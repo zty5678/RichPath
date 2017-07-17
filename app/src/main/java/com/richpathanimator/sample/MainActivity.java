@@ -15,6 +15,7 @@ import com.richpathanimator.RichPathAnimator;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RichPathView clockRichPathView;
     private RichPathView commandRichPathView;
     private RichPathView androidRichPathView;
     private RichPathView arrowSearchRichPathView;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        clockRichPathView=(RichPathView)findViewById(R.id.ic_clock);
         commandRichPathView = (RichPathView) findViewById(R.id.ic_command);
         androidRichPathView = (RichPathView) findViewById(R.id.ic_android);
         arrowSearchRichPathView = (RichPathView) findViewById(R.id.ic_arrow_search);
@@ -36,9 +38,26 @@ public class MainActivity extends AppCompatActivity {
         loveFaceRichPathView = (RichPathView) findViewById(R.id.love_face);
         animalRichPathView = (RichPathView) findViewById(R.id.animal);
 
-        animateCommand();
+        animateClock();
     }
+    private void animateClock() {
 
+        final RichPath minutes = clockRichPathView.findRichPathByName("minutes");
+        final RichPath hours = clockRichPathView.findRichPathByName("hours");
+
+        RichPathAnimator
+                .animate(minutes)
+                .rotation(360)
+                .duration(1000)
+                .andAnimate(hours)
+                .rotation(360)
+                .duration(12000)
+                .repeatModeSet(RichPathAnimator.RESTART)
+                .repeatCountSet(RichPathAnimator.INFINITE)
+                .interpolatorSet(new LinearInterpolator())
+                .start();
+
+    }
     public void animateCommand() {
 
         final RichPath part1 = commandRichPathView.findRichPathByName("part1");

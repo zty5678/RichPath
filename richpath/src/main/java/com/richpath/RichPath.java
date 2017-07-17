@@ -430,6 +430,10 @@ public class RichPath extends Path {
 
         setFillType(XmlParser.getAttributePathFillType(xpp, "fillType", getFillType()));
 
+        pivotX = XmlParser.getAttributeFloat(xpp, "pivotX", pivotX);
+
+        pivotY = XmlParser.getAttributeFloat(xpp, "pivotY", pivotY);
+
         updatePaint();
 
         trim();
